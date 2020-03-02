@@ -5,11 +5,12 @@ class Show < ActiveRecord::Base
     has_many :actors, through: :characters
 
     def actors_list
-        self.actors.map {|show| show.actor.first_name + " " + show.actor.last_name}
+        self.actors.map {|actor| "#{actor.first_name} #{actor.last_name}"}
     end
 
     def build_network(call_letters)
-        
+        network = Network.create(call_letters)
+        network.shows << self
     end
 
 end

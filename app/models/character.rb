@@ -9,7 +9,10 @@ class Character < ActiveRecord::Base
     end
 
     def build_show(show_name)
-        Show.create(show_name)
+        new_show = Show.create(show_name)
+        new_show.characters << self
+        new_show
+        # new_show.build_network
     end
 
 end
